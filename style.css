@@ -51,7 +51,7 @@
 }
 
 /* Nav */
-.nav__list {
+.nav-list {
     display: flex;
     list-style: none;
     gap: var(--nav-gap);
@@ -60,7 +60,7 @@
     line-height: 0.5;
 }
 
-.nav__link {
+.nav-link {
     position: relative;
     font-weight: var(--font-weight-medium);
     font-size: var(--fs-menu);
@@ -72,11 +72,11 @@
     transition: color .2s ease-in-out, opacity .2s ease-in-out;
 }
 
-.nav__link--active {
+.active {
     color: var(--color-accent);
 }
 
-.nav__link::after {
+.nav-link::after {
     content: '';
     display: block;
     position: absolute;
@@ -92,13 +92,13 @@
     pointer-events: none;
 }
 
-.nav__link:hover,
-.nav__link:focus {
+.nav-link:hover,
+.nav-link:focus {
     color: var(--color-accent);
 }
 
-.nav__link:hover::after,
-.nav__link:focus::after {
+.nav-link:hover::after,
+.nav-link:focus::after {
     transform: translateX(-50%) scaleX(1);
 }
 
@@ -184,7 +184,7 @@
 }
 
 /* Было .stat-item img — заменили на отдельный класс для картинки */
-.stat-item__icon {
+.stat-item-icon {
     width: 50px;
     height: auto;
     display: block;
@@ -254,4 +254,129 @@
 
 .copyrait {
     font-size: var(--fs-footer-copy);
+}
+
+/* ------------------- MEDIA QUERIES ------------------- */
+
+/* Планшеты */
+@media (max-width: 992px) {
+    .first-screen-title {
+        font-size: 36px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    .first-screen-description,
+    .section-text {
+        font-size: 15px;
+    }
+
+    .stats-section {
+        gap: 40px;
+        padding: 70px 15px;
+    }
+}
+
+/* Смартфоны */
+@media (max-width: 768px) {
+    .header {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Скрываем обычное меню */
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+        background: var(--color-primary);
+        padding: 20px;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        border-radius: 8px;
+    }
+
+    /* Когда чекбокс активен — показываем меню */
+    .nav-toggle:checked~.nav .nav-list {
+        display: flex;
+    }
+
+    .nav-link {
+        color: var(--color-text-light);
+    }
+
+    /* Бургер */
+    .burger {
+        display: block;
+        width: 30px;
+        height: 22px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .burger span {
+        display: block;
+        height: 4px;
+        width: 100%;
+        background: var(--color-text);
+        border-radius: 2px;
+        margin-bottom: 5px;
+        transition: all .3s ease;
+    }
+
+    /* Анимация крестика */
+    .nav-toggle:checked+label.burger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .nav-toggle:checked+label.burger span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle:checked+label.burger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Контент */
+    .first-screen-title {
+        font-size: 28px;
+    }
+
+    .first-screen-description {
+        font-size: 14px;
+    }
+
+    .btn {
+        padding: 16px 32px;
+        font-size: 14px;
+    }
+
+    .stats-section {
+        flex-direction: column;
+        gap: 25px;
+        padding: 50px 10px;
+    }
+}
+
+/* Совсем маленькие экраны */
+@media (max-width: 480px) {
+    .first-screen-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 20px;
+    }
+
+    .footer-name {
+        font-size: 18px;
+    }
+
+    .copyrait {
+        font-size: 11px;
+    }
 }
